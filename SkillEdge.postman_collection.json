@@ -1,0 +1,147 @@
+{
+	"info": {
+		"_postman_id": "4ee5ff60-6c74-4d1e-b477-2b1720df5135",
+		"name": "SkillEdge",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "41965744"
+	},
+	"item": [
+		{
+			"name": "Server Status",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost",
+					"host": [
+						"localhost"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Register Course",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Java SE\",\r\n    \"description\": \"Core Java (Intro, Basics of Java, JDK/JRE/JVM, OOPs, Exception Handling, Multithreading, Collection Framework)\",\r\n    \"fee\": \"7500\",\r\n    \"duration\": \"2.0\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost/course",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"course"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Course",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost/course/3",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"course",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Courses",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost/course",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"course"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Course",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Java Fullstack (Old)\",\r\n    \"description\": \"Java fullstack course containing Frontend (HTML/CSS, JS, REACT) and Backend Core Java and Advance Java (Servlet, JSP/JSTL, Spring, Hibernate)\",\r\n    \"fee\": 20000,\r\n    \"duration\": 6.0\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost/course/1",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"course",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Remove Course",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost/course?id=4",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"course"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "4"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
