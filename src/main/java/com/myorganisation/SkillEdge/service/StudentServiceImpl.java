@@ -101,6 +101,6 @@ public class StudentServiceImpl implements StudentService {
         String name = studentRepository.findById(id).orElse(null).getName();
 
         studentRepository.deleteById(id);
-        return "Student name: " + name + "(" + id +") has been removed";
+        return "Student name: " + name + "(" + id +") has been removed successfully.";
     }
 }
