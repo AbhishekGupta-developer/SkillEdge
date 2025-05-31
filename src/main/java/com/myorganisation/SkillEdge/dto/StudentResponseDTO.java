@@ -10,5 +10,5 @@ public class StudentResponseDTO {
     private Gender gender;
     private String address;
     private String email;
-    private Long phone;
+    private String phone;
 }
