@@ -17,75 +17,59 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public StudentResponseDTO addStudent(StudentRequestDTO studentRequestDTO) {
-        Student student = new Student();
-        student.setName(studentRequestDTO.getName());
-        student.setGender(studentRequestDTO.getGender());
-        student.setAddress(studentRequestDTO.getAddress());
-        student.setEmail(studentRequestDTO.getEmail());
-        student.setPhone(studentRequestDTO.getPhone());
-
+        Student student = copyStudentRequestDTOToStudent(studentRequestDTO, new Student());
         student = studentRepository.save(student);
-
-        StudentResponseDTO studentResponseDTO = new StudentResponseDTO();
-        studentResponseDTO.setId(student.getId());
-        studentResponseDTO.setName(student.getName());
-        studentResponseDTO.setGender(student.getGender());
-        studentResponseDTO.setAddress(student.getAddress());
-        studentResponseDTO.setEmail(student.getEmail());
-        studentResponseDTO.setPhone(student.getPhone());
-
-        return studentResponseDTO;
+        return convertStudentToStudentResponseDTO(student);
     }
 
     @Override
     public StudentResponseDTO getStudent(Long id) {
         Student student = studentRepository.findById(id).orElse(null);
-
-        StudentResponseDTO studentResponseDTO = new StudentResponseDTO();
-        studentResponseDTO.setId(student.getId());
-        studentResponseDTO.setName(student.getName());
-        studentResponseDTO.setGender(student.getGender());
-        studentResponseDTO.setAddress(student.getAddress());
-        studentResponseDTO.setEmail(student.getEmail());
-        studentResponseDTO.setPhone(student.getPhone());
-
-        return studentResponseDTO;
+        return convertStudentToStudentResponseDTO(student);
     }
 
     @Override
     public List<StudentResponseDTO> getAllStudents() {
         List<Student> studentList = studentRepository.findAll();
-
         List<StudentResponseDTO> studentResponseDTOList = new ArrayList<>();
-
         for(Student student : studentList) {
-            StudentResponseDTO studentResponseDTO = new StudentResponseDTO();
-            studentResponseDTO.setId(student.getId());
-            studentResponseDTO.setName(student.getName());
-            studentResponseDTO.setGender(student.getGender());
-            studentResponseDTO.setAddress(student.getAddress());
-            studentResponseDTO.setEmail(student.getEmail());
-            studentResponseDTO.setPhone(student.getPhone());
-
-            studentResponseDTOList.add(studentResponseDTO);
+            studentResponseDTOList.add(convertStudentToStudentResponseDTO(student));
         }
-
         return studentResponseDTOList;
     }
 
     @Override
     public StudentResponseDTO updateStudent(Long id, StudentRequestDTO studentRequestDTO) {
         Student student = studentRepository.findById(id).orElse(null);
+        copyStudentRequestDTOToStudent(studentRequestDTO, student);
+        studentRepository.save(student);
+        return convertStudentToStudentResponseDTO(student);
+    }
 
+    @Override
+    public String removeStudent(Long id) {
+        String name = studentRepository.findById(id).orElse(null).getName();
+        studentRepository.deleteById(id);
+        return "Student name: " + name + "(" + id +") has been removed successfully.";
+    }
+
+    //Helper methods
+
+    //Copy StudentRequestDTO to Student
+    private Student copyStudentRequestDTOToStudent(StudentRequestDTO studentRequestDTO, Student student) {
         student.setName(studentRequestDTO.getName());
         student.setGender(studentRequestDTO.getGender());
         student.setAddress(studentRequestDTO.getAddress());
         student.setEmail(studentRequestDTO.getEmail());
         student.setPhone(studentRequestDTO.getPhone());
 
-        student = studentRepository.save(student);
+        return student;
+    }
 
+    //Convert Student to StudentResponseDTO
+    private StudentResponseDTO convertStudentToStudentResponseDTO(Student student) {
         StudentResponseDTO studentResponseDTO = new StudentResponseDTO();
+
         studentResponseDTO.setId(student.getId());
         studentResponseDTO.setName(student.getName());
         studentResponseDTO.setGender(student.getGender());
@@ -96,11 +80,4 @@ public class StudentServiceImpl implements StudentService {
         return studentResponseDTO;
     }
 
-    @Override
-    public String removeStudent(Long id) {
-        String name = studentRepository.findById(id).orElse(null).getName();
-
-        studentRepository.deleteById(id);
-        return "Student name: " + name + "(" + id +") has been removed successfully.";
-    }
 }
