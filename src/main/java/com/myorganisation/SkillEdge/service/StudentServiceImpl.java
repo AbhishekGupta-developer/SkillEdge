@@ -3,6 +3,7 @@ package com.myorganisation.SkillEdge.service;
 import com.myorganisation.SkillEdge.dto.StudentRequestDTO;
 import com.myorganisation.SkillEdge.dto.StudentResponseDTO;
 import com.myorganisation.SkillEdge.model.Student;
+import com.myorganisation.SkillEdge.model.enums.Gender;
 import com.myorganisation.SkillEdge.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -51,6 +52,36 @@ public class StudentServiceImpl implements StudentService {
         String name = studentRepository.findById(id).orElse(null).getName();
         studentRepository.deleteById(id);
         return "Student name: " + name + "(" + id +") has been removed successfully.";
+    }
+
+    @Override
+    public List<StudentResponseDTO> getStudentsByName(String name) {
+        List<Student> studentList = studentRepository.findByName(name);
+        List<StudentResponseDTO> studentResponseDTOList = new ArrayList<>();
+        for(Student student : studentList) {
+            studentResponseDTOList.add(convertStudentToStudentResponseDTO(student));
+        }
+        return studentResponseDTOList;
+    }
+
+    @Override
+    public List<StudentResponseDTO> getStudentsByNameLike(String name) {
+        List<Student> studentList = studentRepository.findByNameContaining(name);
+        List<StudentResponseDTO> studentResponseDTOList = new ArrayList<>();
+        for(Student student : studentList) {
+            studentResponseDTOList.add(convertStudentToStudentResponseDTO(student));
+        }
+        return studentResponseDTOList;
+    }
+
+    @Override
+    public List<StudentResponseDTO> getStudentsByNameLikeAndGender(String name, Gender gender) {
+        List<Student> studentList = studentRepository.findByNameContainingAndGender(name, gender);
+        List<StudentResponseDTO> studentResponseDTOList = new ArrayList<>();
+        for(Student student : studentList) {
+            studentResponseDTOList.add(convertStudentToStudentResponseDTO(student));
+        }
+        return studentResponseDTOList;
     }
 
     //Helper methods

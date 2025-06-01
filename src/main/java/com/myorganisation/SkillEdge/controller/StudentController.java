@@ -2,6 +2,7 @@ package com.myorganisation.SkillEdge.controller;
 
 import com.myorganisation.SkillEdge.dto.StudentRequestDTO;
 import com.myorganisation.SkillEdge.dto.StudentResponseDTO;
+import com.myorganisation.SkillEdge.model.enums.Gender;
 import com.myorganisation.SkillEdge.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatusCode;
@@ -40,5 +41,20 @@ public class StudentController {
     @DeleteMapping
     public ResponseEntity<String> removeStudent(@RequestParam Long id) {
         return new ResponseEntity<>(studentService.removeStudent(id), HttpStatusCode.valueOf(200));
+    }
+
+    @GetMapping("/find/name/{name}")
+    public ResponseEntity<List<StudentResponseDTO>> getStudentsByName(@PathVariable String name) {
+        return new ResponseEntity<>(studentService.getStudentsByName(name), HttpStatusCode.valueOf(200));
+    }
+
+    @GetMapping("/find/like/name/{name}")
+    public ResponseEntity<List<StudentResponseDTO>> getStudentsByNameLike(@PathVariable String name) {
+        return new ResponseEntity<>(studentService.getStudentsByNameLike(name), HttpStatusCode.valueOf(200));
+    }
+
+    @GetMapping("/find")
+    public ResponseEntity<List<StudentResponseDTO>> getStudentsByNameLikeAndGender(@RequestParam String name, @RequestParam Gender gender) {
+        return new ResponseEntity<>(studentService.getStudentsByNameLikeAndGender(name, gender), HttpStatusCode.valueOf(200));
     }
 }
