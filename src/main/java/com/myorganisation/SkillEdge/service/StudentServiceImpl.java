@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 @Service
@@ -81,6 +82,30 @@ public class StudentServiceImpl implements StudentService {
         for(Student student : studentList) {
             studentResponseDTOList.add(convertStudentToStudentResponseDTO(student));
         }
+        return studentResponseDTOList;
+    }
+
+    @Override
+    public List<StudentResponseDTO> getStudentsByAddressLike(String address) {
+        List<Student> studentList = studentRepository.searchStudentsByAddress(address);
+        List<StudentResponseDTO> studentResponseDTOList = new LinkedList<>();
+
+        for(Student student : studentList) {
+            studentResponseDTOList.add(convertStudentToStudentResponseDTO(student));
+        }
+
+        return studentResponseDTOList;
+    }
+
+    @Override
+    public List<StudentResponseDTO> getStudentsByPhoneLike(String phone) {
+        List<Student> studentList = studentRepository.searchStudentsByPhone(phone);
+        List<StudentResponseDTO> studentResponseDTOList = new LinkedList<>();
+
+        for(Student student : studentList) {
+            studentResponseDTOList.add(convertStudentToStudentResponseDTO(student));
+        }
+
         return studentResponseDTOList;
     }
 

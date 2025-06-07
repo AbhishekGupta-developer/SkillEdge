@@ -53,6 +53,16 @@ public class StudentController {
         return new ResponseEntity<>(studentService.getStudentsByNameLike(name), HttpStatusCode.valueOf(200));
     }
 
+    @GetMapping("/find/like/address/{address}")
+    public ResponseEntity<List<StudentResponseDTO>> getStudentsByAddressLike(@PathVariable String address) {
+        return new ResponseEntity<>(studentService.getStudentsByAddressLike(address), HttpStatusCode.valueOf(200));
+    }
+
+    @GetMapping("/find/like/phone/{phone}")
+    public ResponseEntity<List<StudentResponseDTO>> getStudentsByPhoneLike(@PathVariable String phone) {
+        return new ResponseEntity<>(studentService.getStudentsByPhoneLike(phone), HttpStatusCode.valueOf(200));
+    }
+
     @GetMapping("/find")
     public ResponseEntity<List<StudentResponseDTO>> getStudentsByNameLikeAndGender(@RequestParam String name, @RequestParam Gender gender) {
         return new ResponseEntity<>(studentService.getStudentsByNameLikeAndGender(name, gender), HttpStatusCode.valueOf(200));

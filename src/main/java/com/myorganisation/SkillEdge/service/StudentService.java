@@ -12,7 +12,11 @@ public interface StudentService {
     List<StudentResponseDTO> getAllStudents();
     StudentResponseDTO updateStudent(Long id, StudentRequestDTO studentRequestDTO);
     String removeStudent(Long id);
+
     List<StudentResponseDTO> getStudentsByName(String name);
     List<StudentResponseDTO> getStudentsByNameLike(String name);
     List<StudentResponseDTO> getStudentsByNameLikeAndGender(String name, Gender gender);
+
+    List<StudentResponseDTO> getStudentsByAddressLike(String address);
+    List<StudentResponseDTO> getStudentsByPhoneLike(String phone);
 }
