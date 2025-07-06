@@ -1,5 +1,6 @@
 package com.myorganisation.SkillEdge.dto;
 
+import com.myorganisation.SkillEdge.model.Account;
 import com.myorganisation.SkillEdge.model.enums.Gender;
 import lombok.Data;
 
@@ -11,4 +12,6 @@ public class StudentResponseDTO {
     private String address;
     private String email;
     private String phone;
+    private CourseResponseDTO course;
+    private Account account;
 }

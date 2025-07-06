@@ -1,12 +1,17 @@
 package com.myorganisation.SkillEdge.service;
 
+import com.myorganisation.SkillEdge.dto.CourseResponseDTO;
 import com.myorganisation.SkillEdge.dto.StudentRequestDTO;
 import com.myorganisation.SkillEdge.dto.StudentResponseDTO;
+import com.myorganisation.SkillEdge.model.Account;
+import com.myorganisation.SkillEdge.model.Course;
 import com.myorganisation.SkillEdge.model.Student;
 import com.myorganisation.SkillEdge.model.enums.Gender;
+import com.myorganisation.SkillEdge.repository.CourseRepository;
 import com.myorganisation.SkillEdge.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -17,9 +22,16 @@ public class StudentServiceImpl implements StudentService {
     @Autowired
     StudentRepository studentRepository;
 
+    @Autowired
+    private CourseRepository courseRepository;
+
     @Override
+    @Transactional
     public StudentResponseDTO addStudent(StudentRequestDTO studentRequestDTO) {
         Student student = copyStudentRequestDTOToStudent(studentRequestDTO, new Student());
+        Account account = new Account();
+        account.setStudent(student);
+        student.setAccount(account);
         student = studentRepository.save(student);
         return convertStudentToStudentResponseDTO(student);
     }
@@ -118,6 +130,9 @@ public class StudentServiceImpl implements StudentService {
         student.setAddress(studentRequestDTO.getAddress());
         student.setEmail(studentRequestDTO.getEmail());
         student.setPhone(studentRequestDTO.getPhone());
+        if(studentRequestDTO.getCourseId() != null) {
+            student.setCourse(courseRepository.findById(studentRequestDTO.getCourseId()).orElse(null));
+        }
 
         return student;
     }
@@ -126,12 +141,22 @@ public class StudentServiceImpl implements StudentService {
     private StudentResponseDTO convertStudentToStudentResponseDTO(Student student) {
         StudentResponseDTO studentResponseDTO = new StudentResponseDTO();
 
+        Course course = student.getCourse();
+        CourseResponseDTO courseResponseDTO = new CourseResponseDTO();
+        courseResponseDTO.setId(course.getId());
+        courseResponseDTO.setName(course.getName());
+        courseResponseDTO.setDescription(course.getDescription());
+        courseResponseDTO.setFee(course.getFee());
+        courseResponseDTO.setDuration(course.getDuration());
+
         studentResponseDTO.setId(student.getId());
         studentResponseDTO.setName(student.getName());
         studentResponseDTO.setGender(student.getGender());
         studentResponseDTO.setAddress(student.getAddress());
         studentResponseDTO.setEmail(student.getEmail());
         studentResponseDTO.setPhone(student.getPhone());
+        studentResponseDTO.setCourse(courseResponseDTO);
+        studentResponseDTO.setAccount(student.getAccount());
 
         return studentResponseDTO;
     }

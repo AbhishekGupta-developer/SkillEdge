@@ -21,4 +21,10 @@ public class Student {
     private String address;
     private String email;
     private String phone;
+
+    @ManyToOne
+    private Course course;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    private Account account;
 }

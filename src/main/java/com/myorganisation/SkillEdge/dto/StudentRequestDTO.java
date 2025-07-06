@@ -10,4 +10,5 @@ public class StudentRequestDTO {
     private String address;
     private String email;
     private String phone;
+    private Long courseId;
 }
