@@ -3,8 +3,6 @@ package com.myorganisation.SkillEdge.model;
 import jakarta.persistence.*;
 import lombok.Data;
 
-import java.util.List;
-
 @Data
 @Entity
 @Table(name = "course")
