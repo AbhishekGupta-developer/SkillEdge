@@ -5,6 +5,8 @@ import com.myorganisation.SkillEdge.dto.StudentResponseDTO;
 import com.myorganisation.SkillEdge.model.enums.Gender;
 import com.myorganisation.SkillEdge.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -66,5 +68,15 @@ public class StudentController {
     @GetMapping("/find")
     public ResponseEntity<List<StudentResponseDTO>> getStudentsByNameLikeAndGender(@RequestParam String name, @RequestParam Gender gender) {
         return new ResponseEntity<>(studentService.getStudentsByNameLikeAndGender(name, gender), HttpStatusCode.valueOf(200));
+    }
+
+    @GetMapping("/page")
+    public ResponseEntity<Page<StudentResponseDTO>> getStudentPage(
+            @RequestParam(defaultValue = "0") Integer pageNumber,
+            @RequestParam(defaultValue = "10") Integer pageSize,
+            @RequestParam(defaultValue = "id") String sortBy,
+            @RequestParam(defaultValue = "asc") String orderIn
+    ) {
+        return new ResponseEntity<>(studentService.getStudentPage(pageNumber, pageSize, sortBy, orderIn), HttpStatus.OK);
     }
 }

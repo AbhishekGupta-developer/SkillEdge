@@ -3,6 +3,7 @@ package com.myorganisation.SkillEdge.service;
 import com.myorganisation.SkillEdge.dto.StudentRequestDTO;
 import com.myorganisation.SkillEdge.dto.StudentResponseDTO;
 import com.myorganisation.SkillEdge.model.enums.Gender;
+import org.springframework.data.domain.Page;
 
 import java.util.List;
 
@@ -19,4 +20,6 @@ public interface StudentService {
 
     List<StudentResponseDTO> getStudentsByAddressLike(String address);
     List<StudentResponseDTO> getStudentsByPhoneLike(String phone);
+
+    Page<StudentResponseDTO> getStudentPage(Integer pageNumber, Integer pageSize, String sortBy, String orderIn);
 }

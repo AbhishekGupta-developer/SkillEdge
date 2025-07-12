@@ -10,6 +10,10 @@ import com.myorganisation.SkillEdge.model.enums.Gender;
 import com.myorganisation.SkillEdge.repository.CourseRepository;
 import com.myorganisation.SkillEdge.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -119,6 +123,18 @@ public class StudentServiceImpl implements StudentService {
         }
 
         return studentResponseDTOList;
+    }
+
+    @Override
+    public Page<StudentResponseDTO> getStudentPage(Integer pageNumber, Integer pageSize, String sortBy, String orderIn) {
+        Sort sort = (orderIn.equalsIgnoreCase("desc")) ? Sort.by(sortBy).descending() : Sort.by(sortBy).ascending();
+        Pageable pageable = PageRequest.of(pageNumber, pageSize, sort);
+
+        Page<Student> studentPage = studentRepository.findAll(pageable);
+
+        Page<StudentResponseDTO> studentResponseDTOPage = studentPage.map(this::mapStudentToStudentResponseDTO);
+
+        return studentResponseDTOPage;
     }
 
     //Helper methods
