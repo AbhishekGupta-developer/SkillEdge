@@ -23,8 +23,10 @@ public class Student {
     private String phone;
 
     @ManyToOne
+    @JoinColumn(name = "course")
     private Course course;
 
     @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "account")
     private Account account;
 }
