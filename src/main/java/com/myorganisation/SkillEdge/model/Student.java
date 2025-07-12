@@ -3,6 +3,10 @@ package com.myorganisation.SkillEdge.model;
 import com.myorganisation.SkillEdge.model.enums.Gender;
 import jakarta.persistence.*;
 import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import java.time.LocalDateTime;
 
 @Data
 @Entity
@@ -21,6 +25,12 @@ public class Student {
     private String address;
     private String email;
     private String phone;
+
+    @CreationTimestamp
+    private LocalDateTime registeredAt;
+
+    @UpdateTimestamp
+    private LocalDateTime updatedAt;
 
     @ManyToOne
     @JoinColumn(name = "course")

@@ -155,6 +155,8 @@ public class StudentServiceImpl implements StudentService {
         studentResponseDTO.setAddress(student.getAddress());
         studentResponseDTO.setEmail(student.getEmail());
         studentResponseDTO.setPhone(student.getPhone());
+        studentResponseDTO.setRegisteredAt(student.getRegisteredAt());
+        studentResponseDTO.setUpdatedAt(student.getUpdatedAt());
         studentResponseDTO.setCourse(courseResponseDTO);
         studentResponseDTO.setAccount(student.getAccount());
 
