@@ -33,13 +33,13 @@ public class StudentServiceImpl implements StudentService {
         account.setStudent(student);
         student.setAccount(account);
         student = studentRepository.save(student);
-        return convertStudentToStudentResponseDTO(student);
+        return mapStudentToStudentResponseDTO(student);
     }
 
     @Override
     public StudentResponseDTO getStudent(Long id) {
         Student student = studentRepository.findById(id).orElse(null);
-        return convertStudentToStudentResponseDTO(student);
+        return mapStudentToStudentResponseDTO(student);
     }
 
     @Override
@@ -47,7 +47,7 @@ public class StudentServiceImpl implements StudentService {
         List<Student> studentList = studentRepository.findAll();
         List<StudentResponseDTO> studentResponseDTOList = new ArrayList<>();
         for(Student student : studentList) {
-            studentResponseDTOList.add(convertStudentToStudentResponseDTO(student));
+            studentResponseDTOList.add(mapStudentToStudentResponseDTO(student));
         }
         return studentResponseDTOList;
     }
@@ -57,7 +57,7 @@ public class StudentServiceImpl implements StudentService {
         Student student = studentRepository.findById(id).orElse(null);
         copyStudentRequestDTOToStudent(studentRequestDTO, student);
         studentRepository.save(student);
-        return convertStudentToStudentResponseDTO(student);
+        return mapStudentToStudentResponseDTO(student);
     }
 
     @Override
@@ -72,7 +72,7 @@ public class StudentServiceImpl implements StudentService {
         List<Student> studentList = studentRepository.findByName(name);
         List<StudentResponseDTO> studentResponseDTOList = new ArrayList<>();
         for(Student student : studentList) {
-            studentResponseDTOList.add(convertStudentToStudentResponseDTO(student));
+            studentResponseDTOList.add(mapStudentToStudentResponseDTO(student));
         }
         return studentResponseDTOList;
     }
@@ -82,7 +82,7 @@ public class StudentServiceImpl implements StudentService {
         List<Student> studentList = studentRepository.findByNameContaining(name);
         List<StudentResponseDTO> studentResponseDTOList = new ArrayList<>();
         for(Student student : studentList) {
-            studentResponseDTOList.add(convertStudentToStudentResponseDTO(student));
+            studentResponseDTOList.add(mapStudentToStudentResponseDTO(student));
         }
         return studentResponseDTOList;
     }
@@ -92,7 +92,7 @@ public class StudentServiceImpl implements StudentService {
         List<Student> studentList = studentRepository.findByNameContainingAndGender(name, gender);
         List<StudentResponseDTO> studentResponseDTOList = new ArrayList<>();
         for(Student student : studentList) {
-            studentResponseDTOList.add(convertStudentToStudentResponseDTO(student));
+            studentResponseDTOList.add(mapStudentToStudentResponseDTO(student));
         }
         return studentResponseDTOList;
     }
@@ -103,7 +103,7 @@ public class StudentServiceImpl implements StudentService {
         List<StudentResponseDTO> studentResponseDTOList = new LinkedList<>();
 
         for(Student student : studentList) {
-            studentResponseDTOList.add(convertStudentToStudentResponseDTO(student));
+            studentResponseDTOList.add(mapStudentToStudentResponseDTO(student));
         }
 
         return studentResponseDTOList;
@@ -115,7 +115,7 @@ public class StudentServiceImpl implements StudentService {
         List<StudentResponseDTO> studentResponseDTOList = new LinkedList<>();
 
         for(Student student : studentList) {
-            studentResponseDTOList.add(convertStudentToStudentResponseDTO(student));
+            studentResponseDTOList.add(mapStudentToStudentResponseDTO(student));
         }
 
         return studentResponseDTOList;
@@ -138,7 +138,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     //Convert Student to StudentResponseDTO
-    private StudentResponseDTO convertStudentToStudentResponseDTO(Student student) {
+    private StudentResponseDTO mapStudentToStudentResponseDTO(Student student) {
         StudentResponseDTO studentResponseDTO = new StudentResponseDTO();
 
         Course course = student.getCourse();
