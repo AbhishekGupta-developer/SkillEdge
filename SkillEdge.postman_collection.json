@@ -12,9 +12,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost",
+					"raw": "{{host}}/api",
 					"host": [
-						"localhost"
+						"{{host}}"
+					],
+					"path": [
+						"api"
 					]
 				}
 			},
@@ -27,7 +30,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"Java SE\",\r\n    \"description\": \"Core Java (Intro, Basics of Java, JDK/JRE/JVM, OOPs, Exception Handling, Multithreading, Collection Framework)\",\r\n    \"fee\": \"7500\",\r\n    \"duration\": \"2.0\"\r\n}",
+					"raw": "{\r\n    \"name\": \"Spring Boot\",\r\n    \"description\": \"Introduction to Spring Boot, Setting up Spring Boot with Spring Initializr, Spring Boot Project Structure, Spring Boot Starter Dependencies, Spring Boot Auto Configuration, Spring Boot Annotations, Creating RESTful APIs with Spring Boot, Handling HTTP Methods (GET, POST, PUT, DELETE), Path Variables and Request Parameters, Using @RestController and @RequestMapping, Data Binding with @RequestBody and @ResponseBody, Integrating Spring Data JPA with Spring Boot, Configuring DataSource and JPA Properties, Creating Repository Interfaces, CRUD Operations with Spring Boot and JPA, Custom Queries using @Query, Pagination and Sorting, Exception Handling using @ControllerAdvice and @ExceptionHandler, Validation using Hibernate Validator and @Valid, Spring Boot Application Properties and YAML, Profiles in Spring Boot, Connecting with MySQL/PostgreSQL Database, Logging with SLF4J and Logback, Spring Boot DevTools for Live Reload, Unit Testing with JUnit and Mockito, Testing REST APIs with MockMvc, Consuming REST APIs using RestTemplate and WebClient, Introduction to Spring Boot Security, Securing REST APIs with Basic Auth and JWT, Integrating Swagger/OpenAPI for API Documentation, Actuator for Monitoring and Metrics, Deploying Spring Boot Application to Tomcat, Building Executable JAR with Maven/Gradle, Dockerizing Spring Boot Application, Introduction to Microservices with Spring Boot, Spring Cloud Overview (Config, Eureka, Feign, Gateway), Best Practices in Spring Boot Development\",\r\n    \"fee\": \"8500\",\r\n    \"duration\": \"3.0\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -35,11 +38,12 @@
 					}
 				},
 				"url": {
-					"raw": "localhost/course",
+					"raw": "{{host}}/api/course",
 					"host": [
-						"localhost"
+						"{{host}}"
 					],
 					"path": [
+						"api",
 						"course"
 					]
 				}
@@ -55,11 +59,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost/course/3",
+					"raw": "{{host}}/api/course/3",
 					"host": [
-						"localhost"
+						"{{host}}"
 					],
 					"path": [
+						"api",
 						"course",
 						"3"
 					]
@@ -76,11 +81,12 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "localhost/course",
+					"raw": "{{host}}/api/course",
 					"host": [
-						"localhost"
+						"{{host}}"
 					],
 					"path": [
+						"api",
 						"course"
 					]
 				}
@@ -97,7 +103,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"name\": \"Java Fullstack (Old)\",\r\n    \"description\": \"Java fullstack course containing Frontend (HTML/CSS, JS, REACT) and Backend Core Java and Advance Java (Servlet, JSP/JSTL, Spring, Hibernate)\",\r\n    \"fee\": 20000,\r\n    \"duration\": 6.0\r\n}",
+					"raw": "{\r\n    \"name\": \"Java Fullstack (Old)\",\r\n    \"description\": \"Java fullstack course containing Frontend (HTML/CSS, JS, REACT) and Backend Core Java and Advance Java (Servlet, JSP/JSTL, Spring, Hibernate)\",\r\n    \"fee\": 20060,\r\n    \"duration\": 6.0\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -105,11 +111,12 @@
 					}
 				},
 				"url": {
-					"raw": "localhost/course/1",
+					"raw": "{{host}}/api/course/1",
 					"host": [
-						"localhost"
+						"{{host}}"
 					],
 					"path": [
+						"api",
 						"course",
 						"1"
 					]
@@ -126,17 +133,82 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "localhost/course?id=4",
+					"raw": "{{host}}/api/course?id=3",
 					"host": [
-						"localhost"
+						"{{host}}"
 					],
 					"path": [
+						"api",
 						"course"
 					],
 					"query": [
 						{
 							"key": "id",
-							"value": "4"
+							"value": "3"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Register student",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Rashmika\",\r\n    \"gender\": \"FEMALE\",\r\n    \"address\": \"Gurgaon\",\r\n    \"email\": \"rashmika@gmaikl.com\",\r\n    \"phone\": \"1234567894\",\r\n    \"courseId\": \"1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}/api/student",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"student"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get student page",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/api/student/page?pageNumber=0&pageSize=10&sortBy=name&orderIn=desc",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"student",
+						"page"
+					],
+					"query": [
+						{
+							"key": "pageNumber",
+							"value": "0"
+						},
+						{
+							"key": "pageSize",
+							"value": "10"
+						},
+						{
+							"key": "sortBy",
+							"value": "name"
+						},
+						{
+							"key": "orderIn",
+							"value": "desc"
 						}
 					]
 				}
