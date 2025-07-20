@@ -57,6 +57,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
+    @Transactional
     public StudentResponseDTO updateStudent(Long id, StudentRequestDTO studentRequestDTO) {
         Student student = studentRepository.findById(id).orElse(null);
         copyStudentRequestDTOToStudent(studentRequestDTO, student);
