@@ -1,6 +1,6 @@
 package com.myorganisation.SkillEdge.exception;
 
-import com.myorganisation.SkillEdge.dto.GenericResponseDto;
+import com.myorganisation.SkillEdge.dto.response.GenericResponseDto;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;

@@ -1,4 +1,4 @@
-package com.myorganisation.SkillEdge.dto;
+package com.myorganisation.SkillEdge.dto.response;
 
 import com.myorganisation.SkillEdge.model.Account;
 import com.myorganisation.SkillEdge.model.enums.Gender;

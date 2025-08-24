@@ -1,7 +1,7 @@
 package com.myorganisation.SkillEdge.service;
 
-import com.myorganisation.SkillEdge.dto.CourseRequestDto;
-import com.myorganisation.SkillEdge.dto.CourseResponseDto;
+import com.myorganisation.SkillEdge.dto.request.CourseRequestDto;
+import com.myorganisation.SkillEdge.dto.response.CourseResponseDto;
 
 import java.util.List;
 

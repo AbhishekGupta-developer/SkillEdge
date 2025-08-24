@@ -1,4 +1,4 @@
-package com.myorganisation.SkillEdge.dto;
+package com.myorganisation.SkillEdge.dto.request;
 
 import lombok.Data;
 

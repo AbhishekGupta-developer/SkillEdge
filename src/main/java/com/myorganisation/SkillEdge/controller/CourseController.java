@@ -1,7 +1,7 @@
 package com.myorganisation.SkillEdge.controller;
 
-import com.myorganisation.SkillEdge.dto.CourseRequestDto;
-import com.myorganisation.SkillEdge.dto.CourseResponseDto;
+import com.myorganisation.SkillEdge.dto.request.CourseRequestDto;
+import com.myorganisation.SkillEdge.dto.response.CourseResponseDto;
 import com.myorganisation.SkillEdge.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatusCode;

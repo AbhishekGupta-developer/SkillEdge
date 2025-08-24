@@ -1,7 +1,7 @@
 package com.myorganisation.SkillEdge.controller;
 
-import com.myorganisation.SkillEdge.dto.StudentRequestDto;
-import com.myorganisation.SkillEdge.dto.StudentResponseDto;
+import com.myorganisation.SkillEdge.dto.request.StudentRequestDto;
+import com.myorganisation.SkillEdge.dto.response.StudentResponseDto;
 import com.myorganisation.SkillEdge.model.enums.Gender;
 import com.myorganisation.SkillEdge.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;

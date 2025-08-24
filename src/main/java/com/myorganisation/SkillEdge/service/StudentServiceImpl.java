@@ -1,8 +1,8 @@
 package com.myorganisation.SkillEdge.service;
 
-import com.myorganisation.SkillEdge.dto.CourseResponseDto;
-import com.myorganisation.SkillEdge.dto.StudentRequestDto;
-import com.myorganisation.SkillEdge.dto.StudentResponseDto;
+import com.myorganisation.SkillEdge.dto.response.CourseResponseDto;
+import com.myorganisation.SkillEdge.dto.request.StudentRequestDto;
+import com.myorganisation.SkillEdge.dto.response.StudentResponseDto;
 import com.myorganisation.SkillEdge.exception.StudentNotFoundException;
 import com.myorganisation.SkillEdge.model.Account;
 import com.myorganisation.SkillEdge.model.Course;
