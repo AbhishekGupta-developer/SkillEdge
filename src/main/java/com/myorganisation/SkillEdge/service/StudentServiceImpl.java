@@ -3,6 +3,7 @@ package com.myorganisation.SkillEdge.service;
 import com.myorganisation.SkillEdge.dto.CourseResponseDTO;
 import com.myorganisation.SkillEdge.dto.StudentRequestDTO;
 import com.myorganisation.SkillEdge.dto.StudentResponseDTO;
+import com.myorganisation.SkillEdge.exception.StudentNotFoundException;
 import com.myorganisation.SkillEdge.model.Account;
 import com.myorganisation.SkillEdge.model.Course;
 import com.myorganisation.SkillEdge.model.Student;
@@ -42,7 +43,7 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public StudentResponseDTO getStudent(Long id) {
-        Student student = studentRepository.findById(id).orElse(null);
+        Student student = studentRepository.findById(id).orElseThrow(() -> new StudentNotFoundException("Student id: " + id + " doesn't exist"));
         return mapStudentToStudentResponseDTO(student);
     }
 
@@ -59,7 +60,7 @@ public class StudentServiceImpl implements StudentService {
     @Override
     @Transactional
     public StudentResponseDTO updateStudent(Long id, StudentRequestDTO studentRequestDTO) {
-        Student student = studentRepository.findById(id).orElse(null);
+        Student student = studentRepository.findById(id).orElseThrow(() -> new StudentNotFoundException("Student id: " + id + " doesn't exist"));
         copyStudentRequestDTOToStudent(studentRequestDTO, student);
         studentRepository.save(student);
         return mapStudentToStudentResponseDTO(student);
@@ -67,7 +68,7 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public String removeStudent(Long id) {
-        String name = studentRepository.findById(id).orElse(null).getName();
+        String name = studentRepository.findById(id).orElseThrow(() -> new StudentNotFoundException("Student id: " + id + " doesn't exist")).getName();
         studentRepository.deleteById(id);
         return "Student name: " + name + "(" + id +") has been removed successfully.";
     }
