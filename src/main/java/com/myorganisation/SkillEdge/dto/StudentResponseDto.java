@@ -7,7 +7,7 @@ import lombok.Data;
 import java.time.LocalDateTime;
 
 @Data
-public class StudentResponseDTO {
+public class StudentResponseDto {
     private Long id;
     private String name;
     private Gender gender;
@@ -16,6 +16,6 @@ public class StudentResponseDTO {
     private String phone;
     private LocalDateTime registeredAt;
     private LocalDateTime updatedAt;
-    private CourseResponseDTO course;
+    private CourseResponseDto course;
     private Account account;
 }

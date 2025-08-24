@@ -1,7 +1,7 @@
 package com.myorganisation.SkillEdge.service;
 
-import com.myorganisation.SkillEdge.dto.CourseRequestDTO;
-import com.myorganisation.SkillEdge.dto.CourseResponseDTO;
+import com.myorganisation.SkillEdge.dto.CourseRequestDto;
+import com.myorganisation.SkillEdge.dto.CourseResponseDto;
 import com.myorganisation.SkillEdge.model.Course;
 import com.myorganisation.SkillEdge.repository.CourseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +17,7 @@ public class CourseServiceImpl implements CourseService {
     CourseRepository courseRepository;
 
     @Override
-    public CourseResponseDTO addCourse(CourseRequestDTO courseRequestDTO) {
+    public CourseResponseDto addCourse(CourseRequestDto courseRequestDTO) {
         Course course = new Course();
         course.setName(courseRequestDTO.getName());
         course.setDescription(courseRequestDTO.getDescription());
@@ -26,7 +26,7 @@ public class CourseServiceImpl implements CourseService {
 
         course = courseRepository.save(course);
 
-        CourseResponseDTO courseResponseDTO = new CourseResponseDTO();
+        CourseResponseDto courseResponseDTO = new CourseResponseDto();
 
         courseResponseDTO.setId(course.getId());
         courseResponseDTO.setName(course.getName());
@@ -38,10 +38,10 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
-    public CourseResponseDTO getCourse(Long id) {
+    public CourseResponseDto getCourse(Long id) {
         Course course = courseRepository.findById(id).orElse(null);
 
-        CourseResponseDTO courseResponseDTO = new CourseResponseDTO();
+        CourseResponseDto courseResponseDTO = new CourseResponseDto();
 
         courseResponseDTO.setId(course.getId());
         courseResponseDTO.setName(course.getName());
@@ -53,13 +53,13 @@ public class CourseServiceImpl implements CourseService {
     }
 
     @Override
-    public List<CourseResponseDTO> getAllCourses() {
+    public List<CourseResponseDto> getAllCourses() {
         List<Course> courseList = courseRepository.findAll();
 
-        List<CourseResponseDTO> courseResponseDTOList = new ArrayList<>();
+        List<CourseResponseDto> courseResponseDtoList = new ArrayList<>();
 
         for(Course course: courseList) {
-            CourseResponseDTO courseResponseDTO = new CourseResponseDTO();
+            CourseResponseDto courseResponseDTO = new CourseResponseDto();
 
             courseResponseDTO.setId(course.getId());
             courseResponseDTO.setName(course.getName());
@@ -67,14 +67,14 @@ public class CourseServiceImpl implements CourseService {
             courseResponseDTO.setFee(course.getFee());
             courseResponseDTO.setDuration(course.getDuration());
 
-            courseResponseDTOList.add(courseResponseDTO);
+            courseResponseDtoList.add(courseResponseDTO);
         }
 
-        return courseResponseDTOList;
+        return courseResponseDtoList;
     }
 
     @Override
-    public CourseResponseDTO updateCourse(Long id, CourseRequestDTO courseRequestDTO) {
+    public CourseResponseDto updateCourse(Long id, CourseRequestDto courseRequestDTO) {
         //Get data from table
         Course course = courseRepository.findById(id).orElse(null);
 
@@ -88,7 +88,7 @@ public class CourseServiceImpl implements CourseService {
         course = courseRepository.save(course);
 
         //Convert Course into CourseResponseDTO
-        CourseResponseDTO courseResponseDTO = new CourseResponseDTO();
+        CourseResponseDto courseResponseDTO = new CourseResponseDto();
 
         courseResponseDTO.setId(course.getId());
         courseResponseDTO.setName(course.getName());

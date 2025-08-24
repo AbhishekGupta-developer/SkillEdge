@@ -1,7 +1,7 @@
 package com.myorganisation.SkillEdge.controller;
 
-import com.myorganisation.SkillEdge.dto.StudentRequestDTO;
-import com.myorganisation.SkillEdge.dto.StudentResponseDTO;
+import com.myorganisation.SkillEdge.dto.StudentRequestDto;
+import com.myorganisation.SkillEdge.dto.StudentResponseDto;
 import com.myorganisation.SkillEdge.model.enums.Gender;
 import com.myorganisation.SkillEdge.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,22 +21,22 @@ public class StudentController {
     StudentService studentService;
 
     @PostMapping
-    public ResponseEntity<StudentResponseDTO> addStudent(@RequestBody StudentRequestDTO studentRequestDTO) {
+    public ResponseEntity<StudentResponseDto> addStudent(@RequestBody StudentRequestDto studentRequestDTO) {
         return new ResponseEntity<>(studentService.addStudent(studentRequestDTO), HttpStatusCode.valueOf(201));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<StudentResponseDTO> getStudent(@PathVariable Long id) {
+    public ResponseEntity<StudentResponseDto> getStudent(@PathVariable Long id) {
         return new ResponseEntity<>(studentService.getStudent(id), HttpStatusCode.valueOf(200));
     }
 
     @GetMapping
-    public ResponseEntity<List<StudentResponseDTO>> getALlStudents() {
+    public ResponseEntity<List<StudentResponseDto>> getALlStudents() {
         return new ResponseEntity<>(studentService.getAllStudents(), HttpStatusCode.valueOf(200));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<StudentResponseDTO> updateStudent(@PathVariable Long id, @RequestBody StudentRequestDTO studentRequestDTO) {
+    public ResponseEntity<StudentResponseDto> updateStudent(@PathVariable Long id, @RequestBody StudentRequestDto studentRequestDTO) {
         return new ResponseEntity<>(studentService.updateStudent(id, studentRequestDTO), HttpStatusCode.valueOf(200));
     }
 
@@ -46,32 +46,32 @@ public class StudentController {
     }
 
     @GetMapping("/find/name/{name}")
-    public ResponseEntity<List<StudentResponseDTO>> getStudentsByName(@PathVariable String name) {
+    public ResponseEntity<List<StudentResponseDto>> getStudentsByName(@PathVariable String name) {
         return new ResponseEntity<>(studentService.getStudentsByName(name), HttpStatusCode.valueOf(200));
     }
 
     @GetMapping("/find/like/name/{name}")
-    public ResponseEntity<List<StudentResponseDTO>> getStudentsByNameLike(@PathVariable String name) {
+    public ResponseEntity<List<StudentResponseDto>> getStudentsByNameLike(@PathVariable String name) {
         return new ResponseEntity<>(studentService.getStudentsByNameLike(name), HttpStatusCode.valueOf(200));
     }
 
     @GetMapping("/find/like/address/{address}")
-    public ResponseEntity<List<StudentResponseDTO>> getStudentsByAddressLike(@PathVariable String address) {
+    public ResponseEntity<List<StudentResponseDto>> getStudentsByAddressLike(@PathVariable String address) {
         return new ResponseEntity<>(studentService.getStudentsByAddressLike(address), HttpStatusCode.valueOf(200));
     }
 
     @GetMapping("/find/like/phone/{phone}")
-    public ResponseEntity<List<StudentResponseDTO>> getStudentsByPhoneLike(@PathVariable String phone) {
+    public ResponseEntity<List<StudentResponseDto>> getStudentsByPhoneLike(@PathVariable String phone) {
         return new ResponseEntity<>(studentService.getStudentsByPhoneLike(phone), HttpStatusCode.valueOf(200));
     }
 
     @GetMapping("/find")
-    public ResponseEntity<List<StudentResponseDTO>> getStudentsByNameLikeAndGender(@RequestParam String name, @RequestParam Gender gender) {
+    public ResponseEntity<List<StudentResponseDto>> getStudentsByNameLikeAndGender(@RequestParam String name, @RequestParam Gender gender) {
         return new ResponseEntity<>(studentService.getStudentsByNameLikeAndGender(name, gender), HttpStatusCode.valueOf(200));
     }
 
     @GetMapping("/page")
-    public ResponseEntity<Page<StudentResponseDTO>> getStudentPage(
+    public ResponseEntity<Page<StudentResponseDto>> getStudentPage(
             @RequestParam(defaultValue = "0") Integer pageNumber,
             @RequestParam(defaultValue = "10") Integer pageSize,
             @RequestParam(defaultValue = "id") String sortBy,

@@ -1,8 +1,8 @@
 package com.myorganisation.SkillEdge.service;
 
-import com.myorganisation.SkillEdge.dto.CourseResponseDTO;
-import com.myorganisation.SkillEdge.dto.StudentRequestDTO;
-import com.myorganisation.SkillEdge.dto.StudentResponseDTO;
+import com.myorganisation.SkillEdge.dto.CourseResponseDto;
+import com.myorganisation.SkillEdge.dto.StudentRequestDto;
+import com.myorganisation.SkillEdge.dto.StudentResponseDto;
 import com.myorganisation.SkillEdge.exception.StudentNotFoundException;
 import com.myorganisation.SkillEdge.model.Account;
 import com.myorganisation.SkillEdge.model.Course;
@@ -32,7 +32,7 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     @Transactional
-    public StudentResponseDTO addStudent(StudentRequestDTO studentRequestDTO) {
+    public StudentResponseDto addStudent(StudentRequestDto studentRequestDTO) {
         Student student = copyStudentRequestDTOToStudent(studentRequestDTO, new Student());
         Account account = new Account();
         account.setStudent(student);
@@ -42,24 +42,24 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public StudentResponseDTO getStudent(Long id) {
+    public StudentResponseDto getStudent(Long id) {
         Student student = studentRepository.findById(id).orElseThrow(() -> new StudentNotFoundException("Student id: " + id + " doesn't exist"));
         return mapStudentToStudentResponseDTO(student);
     }
 
     @Override
-    public List<StudentResponseDTO> getAllStudents() {
+    public List<StudentResponseDto> getAllStudents() {
         List<Student> studentList = studentRepository.findAll();
-        List<StudentResponseDTO> studentResponseDTOList = new ArrayList<>();
+        List<StudentResponseDto> studentResponseDtoList = new ArrayList<>();
         for(Student student : studentList) {
-            studentResponseDTOList.add(mapStudentToStudentResponseDTO(student));
+            studentResponseDtoList.add(mapStudentToStudentResponseDTO(student));
         }
-        return studentResponseDTOList;
+        return studentResponseDtoList;
     }
 
     @Override
     @Transactional
-    public StudentResponseDTO updateStudent(Long id, StudentRequestDTO studentRequestDTO) {
+    public StudentResponseDto updateStudent(Long id, StudentRequestDto studentRequestDTO) {
         Student student = studentRepository.findById(id).orElseThrow(() -> new StudentNotFoundException("Student id: " + id + " doesn't exist"));
         copyStudentRequestDTOToStudent(studentRequestDTO, student);
         studentRepository.save(student);
@@ -74,67 +74,67 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public List<StudentResponseDTO> getStudentsByName(String name) {
+    public List<StudentResponseDto> getStudentsByName(String name) {
         List<Student> studentList = studentRepository.findByName(name);
-        List<StudentResponseDTO> studentResponseDTOList = new ArrayList<>();
+        List<StudentResponseDto> studentResponseDtoList = new ArrayList<>();
         for(Student student : studentList) {
-            studentResponseDTOList.add(mapStudentToStudentResponseDTO(student));
+            studentResponseDtoList.add(mapStudentToStudentResponseDTO(student));
         }
-        return studentResponseDTOList;
+        return studentResponseDtoList;
     }
 
     @Override
-    public List<StudentResponseDTO> getStudentsByNameLike(String name) {
+    public List<StudentResponseDto> getStudentsByNameLike(String name) {
         List<Student> studentList = studentRepository.findByNameContaining(name);
-        List<StudentResponseDTO> studentResponseDTOList = new ArrayList<>();
+        List<StudentResponseDto> studentResponseDtoList = new ArrayList<>();
         for(Student student : studentList) {
-            studentResponseDTOList.add(mapStudentToStudentResponseDTO(student));
+            studentResponseDtoList.add(mapStudentToStudentResponseDTO(student));
         }
-        return studentResponseDTOList;
+        return studentResponseDtoList;
     }
 
     @Override
-    public List<StudentResponseDTO> getStudentsByNameLikeAndGender(String name, Gender gender) {
+    public List<StudentResponseDto> getStudentsByNameLikeAndGender(String name, Gender gender) {
         List<Student> studentList = studentRepository.findByNameContainingAndGender(name, gender);
-        List<StudentResponseDTO> studentResponseDTOList = new ArrayList<>();
+        List<StudentResponseDto> studentResponseDtoList = new ArrayList<>();
         for(Student student : studentList) {
-            studentResponseDTOList.add(mapStudentToStudentResponseDTO(student));
+            studentResponseDtoList.add(mapStudentToStudentResponseDTO(student));
         }
-        return studentResponseDTOList;
+        return studentResponseDtoList;
     }
 
     @Override
-    public List<StudentResponseDTO> getStudentsByAddressLike(String address) {
+    public List<StudentResponseDto> getStudentsByAddressLike(String address) {
         List<Student> studentList = studentRepository.searchStudentsByAddress(address);
-        List<StudentResponseDTO> studentResponseDTOList = new LinkedList<>();
+        List<StudentResponseDto> studentResponseDtoList = new LinkedList<>();
 
         for(Student student : studentList) {
-            studentResponseDTOList.add(mapStudentToStudentResponseDTO(student));
+            studentResponseDtoList.add(mapStudentToStudentResponseDTO(student));
         }
 
-        return studentResponseDTOList;
+        return studentResponseDtoList;
     }
 
     @Override
-    public List<StudentResponseDTO> getStudentsByPhoneLike(String phone) {
+    public List<StudentResponseDto> getStudentsByPhoneLike(String phone) {
         List<Student> studentList = studentRepository.searchStudentsByPhone(phone);
-        List<StudentResponseDTO> studentResponseDTOList = new LinkedList<>();
+        List<StudentResponseDto> studentResponseDtoList = new LinkedList<>();
 
         for(Student student : studentList) {
-            studentResponseDTOList.add(mapStudentToStudentResponseDTO(student));
+            studentResponseDtoList.add(mapStudentToStudentResponseDTO(student));
         }
 
-        return studentResponseDTOList;
+        return studentResponseDtoList;
     }
 
     @Override
-    public Page<StudentResponseDTO> getStudentPage(Integer pageNumber, Integer pageSize, String sortBy, String orderIn) {
+    public Page<StudentResponseDto> getStudentPage(Integer pageNumber, Integer pageSize, String sortBy, String orderIn) {
         Sort sort = (orderIn.equalsIgnoreCase("desc")) ? Sort.by(sortBy).descending() : Sort.by(sortBy).ascending();
         Pageable pageable = PageRequest.of(pageNumber, pageSize, sort);
 
         Page<Student> studentPage = studentRepository.findAll(pageable);
 
-        Page<StudentResponseDTO> studentResponseDTOPage = studentPage.map(this::mapStudentToStudentResponseDTO);
+        Page<StudentResponseDto> studentResponseDTOPage = studentPage.map(this::mapStudentToStudentResponseDTO);
 
         return studentResponseDTOPage;
     }
@@ -142,7 +142,7 @@ public class StudentServiceImpl implements StudentService {
     //Helper methods
 
     //Copy StudentRequestDTO to Student
-    private Student copyStudentRequestDTOToStudent(StudentRequestDTO studentRequestDTO, Student student) {
+    private Student copyStudentRequestDTOToStudent(StudentRequestDto studentRequestDTO, Student student) {
         student.setName(studentRequestDTO.getName());
         student.setGender(studentRequestDTO.getGender());
         student.setAddress(studentRequestDTO.getAddress());
@@ -156,11 +156,11 @@ public class StudentServiceImpl implements StudentService {
     }
 
     //Convert Student to StudentResponseDTO
-    private StudentResponseDTO mapStudentToStudentResponseDTO(Student student) {
-        StudentResponseDTO studentResponseDTO = new StudentResponseDTO();
+    private StudentResponseDto mapStudentToStudentResponseDTO(Student student) {
+        StudentResponseDto studentResponseDTO = new StudentResponseDto();
 
         Course course = student.getCourse();
-        CourseResponseDTO courseResponseDTO = new CourseResponseDTO();
+        CourseResponseDto courseResponseDTO = new CourseResponseDto();
         courseResponseDTO.setId(course.getId());
         courseResponseDTO.setName(course.getName());
         courseResponseDTO.setDescription(course.getDescription());

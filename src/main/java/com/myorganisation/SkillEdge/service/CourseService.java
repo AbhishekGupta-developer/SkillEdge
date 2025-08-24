@@ -1,14 +1,14 @@
 package com.myorganisation.SkillEdge.service;
 
-import com.myorganisation.SkillEdge.dto.CourseRequestDTO;
-import com.myorganisation.SkillEdge.dto.CourseResponseDTO;
+import com.myorganisation.SkillEdge.dto.CourseRequestDto;
+import com.myorganisation.SkillEdge.dto.CourseResponseDto;
 
 import java.util.List;
 
 public interface CourseService {
-    CourseResponseDTO addCourse(CourseRequestDTO courseRequestDTO);
-    CourseResponseDTO getCourse(Long id);
-    List<CourseResponseDTO> getAllCourses();
-    CourseResponseDTO updateCourse(Long id, CourseRequestDTO courseRequestDTO);
+    CourseResponseDto addCourse(CourseRequestDto courseRequestDTO);
+    CourseResponseDto getCourse(Long id);
+    List<CourseResponseDto> getAllCourses();
+    CourseResponseDto updateCourse(Long id, CourseRequestDto courseRequestDTO);
     String removeCourse(Long id);
 }

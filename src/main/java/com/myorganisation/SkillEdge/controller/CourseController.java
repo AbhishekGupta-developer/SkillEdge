@@ -1,7 +1,7 @@
 package com.myorganisation.SkillEdge.controller;
 
-import com.myorganisation.SkillEdge.dto.CourseRequestDTO;
-import com.myorganisation.SkillEdge.dto.CourseResponseDTO;
+import com.myorganisation.SkillEdge.dto.CourseRequestDto;
+import com.myorganisation.SkillEdge.dto.CourseResponseDto;
 import com.myorganisation.SkillEdge.service.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatusCode;
@@ -18,22 +18,22 @@ public class CourseController {
     CourseService courseService;
 
     @PostMapping
-    public ResponseEntity<CourseResponseDTO> addCourse(@RequestBody CourseRequestDTO courseRequestDTO) {
+    public ResponseEntity<CourseResponseDto> addCourse(@RequestBody CourseRequestDto courseRequestDTO) {
         return new ResponseEntity<>(courseService.addCourse(courseRequestDTO), HttpStatusCode.valueOf(201));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<CourseResponseDTO> getCourse(@PathVariable Long id) {
+    public ResponseEntity<CourseResponseDto> getCourse(@PathVariable Long id) {
         return new ResponseEntity<>(courseService.getCourse(id), HttpStatusCode.valueOf(200));
     }
 
     @GetMapping
-    public ResponseEntity<List<CourseResponseDTO>> getAllCourses() {
+    public ResponseEntity<List<CourseResponseDto>> getAllCourses() {
         return new ResponseEntity<>(courseService.getAllCourses(),HttpStatusCode.valueOf(200));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<CourseResponseDTO> updateCourse(@PathVariable Long id, @RequestBody CourseRequestDTO courseRequestDTO) {
+    public ResponseEntity<CourseResponseDto> updateCourse(@PathVariable Long id, @RequestBody CourseRequestDto courseRequestDTO) {
         return new ResponseEntity<>(courseService.updateCourse(id, courseRequestDTO), HttpStatusCode.valueOf(200));
     }
 

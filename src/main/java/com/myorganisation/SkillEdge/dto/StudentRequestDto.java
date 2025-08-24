@@ -4,7 +4,7 @@ import com.myorganisation.SkillEdge.model.enums.Gender;
 import lombok.Data;
 
 @Data
-public class StudentRequestDTO {
+public class StudentRequestDto {
     private String name;
     private Gender gender;
     private String address;
