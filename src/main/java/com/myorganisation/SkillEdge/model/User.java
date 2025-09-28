@@ -22,7 +22,9 @@ public class User implements UserDetails {
     @Enumerated(EnumType.STRING)
     private UserRole role;
 
+    @Column(unique = true)
     private String username;
+
     private String password;
 
     @Override
