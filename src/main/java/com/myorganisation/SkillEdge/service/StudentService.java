@@ -2,7 +2,7 @@ package com.myorganisation.SkillEdge.service;
 
 import com.myorganisation.SkillEdge.dto.request.StudentRequestDto;
 import com.myorganisation.SkillEdge.dto.response.StudentResponseDto;
-import com.myorganisation.SkillEdge.model.enums.Gender;
+import com.myorganisation.SkillEdge.enums.Gender;
 import org.springframework.data.domain.Page;
 
 import java.util.List;

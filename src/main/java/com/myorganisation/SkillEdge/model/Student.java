@@ -1,6 +1,6 @@
 package com.myorganisation.SkillEdge.model;
 
-import com.myorganisation.SkillEdge.model.enums.Gender;
+import com.myorganisation.SkillEdge.enums.Gender;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;

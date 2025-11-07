@@ -1,6 +1,6 @@
 package com.myorganisation.SkillEdge.dto.response;
 
-import com.myorganisation.SkillEdge.model.enums.UserRole;
+import com.myorganisation.SkillEdge.enums.UserRole;
 import lombok.Data;
 
 @Data

@@ -7,7 +7,7 @@ import com.myorganisation.SkillEdge.exception.StudentNotFoundException;
 import com.myorganisation.SkillEdge.model.Account;
 import com.myorganisation.SkillEdge.model.Course;
 import com.myorganisation.SkillEdge.model.Student;
-import com.myorganisation.SkillEdge.model.enums.Gender;
+import com.myorganisation.SkillEdge.enums.Gender;
 import com.myorganisation.SkillEdge.repository.CourseRepository;
 import com.myorganisation.SkillEdge.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;

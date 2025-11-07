@@ -1,4 +1,4 @@
-package com.myorganisation.SkillEdge.model.enums;
+package com.myorganisation.SkillEdge.enums;
 
 public enum Gender {
     MALE,

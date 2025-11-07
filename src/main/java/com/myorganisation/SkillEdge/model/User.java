@@ -1,6 +1,6 @@
 package com.myorganisation.SkillEdge.model;
 
-import com.myorganisation.SkillEdge.model.enums.UserRole;
+import com.myorganisation.SkillEdge.enums.UserRole;
 import jakarta.persistence.*;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
