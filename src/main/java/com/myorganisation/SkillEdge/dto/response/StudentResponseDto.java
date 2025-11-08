@@ -1,7 +1,7 @@
 package com.myorganisation.SkillEdge.dto.response;
 
-import com.myorganisation.SkillEdge.model.Account;
 import com.myorganisation.SkillEdge.enums.Gender;
+import com.myorganisation.SkillEdge.model.Account;
 import lombok.Data;
 
 import java.time.LocalDateTime;
